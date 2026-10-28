@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+db.sqlite3
+staticfiles
+__pycache__
+*.pyc
+
+backend/local_sheets/
+backend/db.sqlite3
+.env

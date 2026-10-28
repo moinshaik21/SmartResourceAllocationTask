@@ -1,0 +1,49 @@
+# Render Blueprint - free web service for the API. Frontend goes on Vercel/Netlify (see README).
+services:
+  - type: web
+    name: captureflow-api
+    runtime: python
+    plan: free
+    autoDeploy: true
+    rootDir: backend
+    buildCommand: bash build.sh
+    startCommand: gunicorn config.wsgi --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 90
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.4
+      - key: DEBUG
+        value: "0"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com"
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: DAY_START_HOUR
+        value: "12"
+      - key: CAPTURES_TAB
+        sync: false
+      - key: CAPTURE_COL_PROJECT
+        sync: false
+      - key: CAPTURE_COL_CAPTURE
+        sync: false
+      - key: CAPTURE_COL_REF
+        sync: false
+      - key: LOG_TAB_PREFIX
+        value: "Night "
+      - key: TIME_ZONE
+        value: Asia/Kolkata
+      - key: GRAPH_TENANT_ID
+        sync: false
+      - key: GRAPH_CLIENT_ID
+        sync: false
+      - key: GRAPH_FILE_URL
+        sync: false
+      - key: CRON_SECRET
+        generateValue: true
